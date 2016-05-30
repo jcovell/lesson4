@@ -1,0 +1,16 @@
+
+[1mFrom:[0m /home/ubuntu/workspace/lesson4/TTT1c_prob.rb @ line 45 Object#player_places_piece!:
+
+    [1;34m37[0m: [32mdef[0m [1;34mplayer_places_piece![0m(brd)
+    [1;34m38[0m:   square = [31m[1;31m'[0m[31m[1;31m'[0m[31m[0m
+    [1;34m39[0m:   loop [32mdo[0m
+    [1;34m40[0m:     prompt [31m[1;31m"[0m[31mChoose a square (#{empty_squares(brd).join([1;31m'[0m[31m, [1;31m'[0m[31m[0m[31m)}[0m[31m):[1;31m"[0m[31m[0m
+    [1;34m41[0m:     square = gets.chomp.to_i
+    [1;34m42[0m:     [32mbreak[0m [32mif[0m empty_squares(brd).include?(square)
+    [1;34m43[0m:     prompt [31m[1;31m"[0m[31mSorry, that's not a valid choice.[1;31m"[0m[31m[0m
+    [1;34m44[0m:   [32mend[0m
+ => [1;34m45[0m:   binding.pry
+    [1;34m46[0m:   brd[square] = [1;34;4mPLAYER_MARKER[0m
+    [1;34m47[0m:   binding.pry
+    [1;34m48[0m: [32mend[0m
+
