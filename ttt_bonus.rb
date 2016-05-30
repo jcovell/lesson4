@@ -6,7 +6,7 @@ INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
 COMPUTER_MARKER = 'O'.freeze
 FIRST_PLAYER = 'choose'.freeze
-WINNING_SCORE = 2
+WINNING_SCORE = 5
 
 def prompt(msg)
   puts "=> #{msg}"
