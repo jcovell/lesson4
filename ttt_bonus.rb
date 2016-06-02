@@ -6,7 +6,7 @@ INITIAL_MARKER = ' '.freeze
 PLAYER_MARKER = 'X'.freeze
 COMPUTER_MARKER = 'O'.freeze
 FIRST_PLAYER = 'choose'.freeze
-WINNING_SCORE = 5
+WINNING_SCORE = 2
 
 def prompt(msg)
   puts "=> #{msg}"
@@ -18,7 +18,7 @@ end
 
 # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
 def display_board(brd)
-  system 'clr'
+  system('clear') || system('cls')
   puts ' '
   puts "You're a #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
@@ -75,27 +75,20 @@ def player_marks!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def computer_offense(brd, square='')
+def computer_offense_or_defense(brd, square='', offense=true)
   WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, COMPUTER_MARKER)
-    break if square
-  end
-  square
-end
-
-def computer_defense(brd, square)
-  WINNING_LINES.each do |line|
-    square = find_at_risk_square(line, brd, PLAYER_MARKER)
+    square = find_at_risk_square(line, brd, offense ? COMPUTER_MARKER : PLAYER_MARKER)
     break if square
   end
   square
 end
 
 def computer_marks!(brd)
-  square = computer_offense(brd)
-  square = computer_defense(brd, square) unless square
-  square = 5 if !square && empty_squares(brd).include?(5)
-  square = empty_squares(brd).sample unless square
+  square = computer_offense_or_defense(brd, square,true)
+  square ||= computer_offense_or_defense(brd, square,false)
+  square ||= 5 if empty_squares(brd).include?(5)
+  square ||= empty_squares(brd).sample
+
   brd[square] = COMPUTER_MARKER
 end
 
